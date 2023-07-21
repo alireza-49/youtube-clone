@@ -1,16 +1,14 @@
 import { useQuery } from "@tanstack/react-query"
 import fetchSearch from "./fetchSearch"
-import { useParams } from "react-router-dom"
 import LineMdLoadingAltLoop from "./LineMdLoadingAltLoop";
 import Video from "./video";
 import { useState } from "react";
-const Search = () => {
-  const query = useParams()
-  console.log(query)
-  const result = useQuery(['search', query.query] , fetchSearch)
+const Homepage = () => {
+  const result = useQuery(['homepage', ''] , fetchSearch)
+  
   const [render,setRender] = useState({})
   if (result.isLoading){
-    return( 
+    return(
       <div className="loading">
           <LineMdLoadingAltLoop/>
       </div>
@@ -32,4 +30,4 @@ const Search = () => {
     </>
   )
 }
-export default Search
+export default Homepage;
