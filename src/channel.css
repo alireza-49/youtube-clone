@@ -1,0 +1,43 @@
+.loading-channel-data{
+    font-size: 5rem;
+   color: aliceblue;
+   width: 100%;
+   height: 3em;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.channel-data{
+    height: 18em;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    color: aliceblue;
+    margin-top: 2em;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1em;
+}
+.channel-data h4{
+    color: gray;
+    
+}
+.channel-data img{
+    width: 15em;
+    border-radius: 0.5em;
+}
+.channel-data-avatar{
+    display: flex;
+    gap: 1em;
+
+}
+.channel-data-avatar div{
+    border: 1px solid gray;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+.channel-data-description{
+
+    border: 1px solid gray;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}

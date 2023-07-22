@@ -5,6 +5,11 @@ import { useQuery } from "@tanstack/react-query"
 import fetchSearch from './fetchSearch'
 import LineMdLoadingAltLoop from "./LineMdLoadingAltLoop"
 import { Slider } from "@mui/material"
+import './videoplayer.css'
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {Accordion ,AccordionSummary,AccordionDetails} from "@mui/material"
 const VideoPlayer = () => {
     const [miniPlayer,setMiniplayer] = useState(false)
     const {id} = useParams()
@@ -20,11 +25,16 @@ const VideoPlayer = () => {
             </div>
         )
     }
-   if (isLoading){
-    return(
+if (isLoading){
+    return( 
         <div>
-            <LineMdLoadingAltLoop/>
-        </div>
+        <div className="loading-channel-data">
+          <LineMdLoadingAltLoop/>
+      </div>
+        <div className="loading-homepage">
+          <LineMdLoadingAltLoop/>
+      </div>
+      </div>
     )}
     const info = [data.items[0].statistics,data.items[0].snippet]
     const calculateTimedifference = (time) => {
@@ -37,58 +47,63 @@ const VideoPlayer = () => {
     }
     return (
         <div>
-            <div>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/9Sq4nvhrHmM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <div>
-                <h3>{info[1].title}</h3>
-                <h4>{info[0].likeCount}</h4>
-            </div>
-            <div> 
-                <Link to={'/channels/' + info[1].channelId}> {info[1].channelTitle}</Link>
-            </div>
-            <div>
-                <h5> {calculateTimedifference(info[1].publishedAt)}</h5>
-                <h4>{info[1].description}</h4>
-                <h3>{info[0].viewCount}</h3>
-            </div>
-            <div>
-                {comments.isLoading?<div><LineMdLoadingAltLoop/></div>:(
-                    (comments.data.items?<h3>no comments yet</h3> :null),
-                    comments.data.items.map((comment) => {
-                        const detail = comment.snippet.topLevelComment.snippet
-                        return(
-                            <div key={comment.id}>
-                                <div>
-                                    <img src={detail.authorProfileImageUrl} alt="avatar" />
-                                    <h3>{detail.authorDisplayName}</h3>
-                                    <h4>{calculateTimedifference(detail.publishedAt)}</h4>
+                <div className="player-container">
+                    <iframe  src="https://www.youtube.com/embed/9Sq4nvhrHmM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div className="player-data">    
+                    <div className="player-title">
+                        <h3>{info[1].title}</h3>
+                        <h4>{info[0].likeCount} <ThumbUpAltIcon/> </h4> <h4>{info[0].viewCount} <RemoveRedEyeIcon/></h4>
+                    </div>
+                    <div className="channel-name-player"> 
+                        <Link to={'/channels/' + info[1].channelId}> {info[1].channelTitle}</Link>
+                    </div>
+                    <div className="accordin-container">
+                            <Accordion id="accordin">
+                                <AccordionSummary expandIcon={<ExpandMoreIcon />}>despription</AccordionSummary>
+                                <AccordionDetails> {info[1].description}</AccordionDetails>
+                            </Accordion>
+                    </div>
+                    </div>
+            <div className="comments-suggested">
+                <div className="comments-container">
+                    {comments.isLoading?<div className=""><LineMdLoadingAltLoop/></div>:(
+                        (comments.data.items?<h3>no comments yet</h3> :null),
+                        comments.data.items.map((comment) => {
+                            const detail = comment.snippet.topLevelComment.snippet
+                            return(
+                                <div className="comment-container" key={comment.id}>
+                                    <div className="comment-header">
+                                        <img src={detail.authorProfileImageUrl} alt="avatar" />
+                                        <h3>{detail.authorDisplayName}</h3>
+                                        <h4>{calculateTimedifference(detail.publishedAt)}</h4>
+                                    </div>
+                                    <div className="comment-text">{detail.textDisplay}</div>
                                 </div>
-                                <div>{detail.textDisplay}</div>
-                            </div>
-                        )
-                    }))               
-                }
-            </div>
-            <div>
-                {related_videoes.isLoading? <LineMdLoadingAltLoop/>: (
-                    !related_videoes.data.items?<h3>sorry no suggestions for this video</h3>:
-                    (related_videoes.data.items.map((video) => {
-                        const data = video.snippet
+                            )
+                        }))               
+                    }
+                </div>
+                <div className="suggested-videoes-container">
+                    {related_videoes.isLoading? <LineMdLoadingAltLoop/>: (
+                        !related_videoes.data.items?<h3>sorry no suggestions for this video</h3>:
+                        (related_videoes.data.items.map((video) => {
+                            const data = video.snippet
 
-                        return(
-                            <div key={video.id.videoId}>
-                                <Link to={'/videoPlayer/'+ video.id.videoId}>
-                                    <img src={data.thumbnails.medium.url} alt="" loading="lazy"/>
-                                    <h3>{data.title}</h3>
-                                </Link>
-                                date:{data.publishTime}
+                            return(
+                                <div className='suggested-video' key={video.id.videoId}>
+                                    <Link to={'/videoPlayer/'+ video.id.videoId}>
+                                        <img className='suggested-video-thumbnail' src={data.thumbnails.medium.url} alt="" loading="lazy"/>
+                                        <h3>{data.title}</h3>
+                                    </Link>
+                                    {calculateTimedifference(data.publishTime)}
 
-                                <Link to={'/channels/' + data.channelId} >{data.channelTitle}</Link>
-                                </div>
-                        )
-                    }))
-                )}
+                                    <Link className="suggested-video-channel" to={'/channels/' + data.channelId} >{data.channelTitle}</Link>
+                                    </div>
+                            )
+                        }))
+                    )}
+                </div>
             </div>
         </div>
         

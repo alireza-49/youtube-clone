@@ -52,7 +52,7 @@ const fetchSearch = async({queryKey}) => {
     const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '173ef1cd25msh2a2399880f0c157p138df8jsn7904a11f5742',
+		'X-RapidAPI-Key': '918b133867msh406627930bef70dp168546jsna2182432c202',
 		'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
 	}
     };

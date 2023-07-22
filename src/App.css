@@ -1,0 +1,113 @@
+:root{
+    --borderColor:rgb(54, 52, 52);
+    --bakgrounColor: rgb(29, 29, 29);
+    font-size: 15px;
+
+}
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+body{
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bakgrounColor);
+    font-size: 15px;
+}
+ .navbar-container{
+    width: 100%;
+    border-bottom: 1px solid var(--borderColor);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+ }
+ .search-logo-container{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    padding-left: 1rem;
+ }
+ .search-logo-container >a>svg{
+    height: 2em;
+    width: 2em;
+    color: crimson;
+   
+ }
+ .search-logo-container form{
+    width: 40%;  
+    display: flex;
+    position: relative;
+    top: 0.5em;
+ }
+ .search-logo-container form input{
+    width: 100%;  
+    border-radius: 2em;
+    padding-left: 15px;
+    color: aliceblue;
+    font-size: 1rem;
+    background-color: rgb(49, 49, 49);
+    border-width: 1px;
+    border-color: var(--borderColor);
+ }
+ .search-logo-container form button{
+    position: absolute;
+    right: 0;
+    border-radius: 2em;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    margin-right: 10px;
+    font-weight: 200;
+    color: aliceblue;
+    top: 1em;
+ }
+ .topics-container{
+    height: 2em;
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: space-around;
+ }
+ .header-topic{
+    text-decoration: none;
+    color: aliceblue;
+    display: block;
+    font-size: 1rem;
+    background-color: rgba(54, 54, 54, 0.829);
+    padding: 0.3em;
+    margin-bottom: 0.2em;
+    border-radius: 0.3em;
+
+ }
+
+ .header-active-topic{
+    background-color: aliceblue;
+    color: rgb(0, 0, 0);
+
+ }
+
+
+.loading-homepage,.error-homepage{
+   font-size: 5rem;
+   color: aliceblue;
+   width: 100%;
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.error-homepage button{
+   background-color: rgba(240, 248, 255, 0);
+   border: none;
+   color: aliceblue;
+}
+
+.homepage-video-container{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   margin-top: 2em;
+   row-gap: 2em;
+   column-gap: 1em;
+}

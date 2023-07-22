@@ -1,0 +1,35 @@
+.video-container{
+    width: 21rem;
+    height: 18rem;
+    color: rgb(95, 95, 95);
+    font-size: 0.8em;
+
+}
+.video-thumbnail{
+    border-radius: 1em; 
+}
+.video-thumbnail-container h3{
+    font-size: 1rem;
+}
+.video-thumbnail-container img{
+    width: 21rem;
+    height: 12rem;
+}
+.video-link{
+    text-decoration: none;
+    color: aliceblue;
+} 
+
+.video-container>div{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.video-container>div a{
+    border: 1px solid gray;
+    padding: 0.5em;
+    border-radius: 0.4em;
+}

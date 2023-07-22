@@ -17,20 +17,20 @@ const Navbar = () => {
   const topics = ['all','javascript','react','minecraft', 'history' , 'math' , 'data science' , 'biology']
   const [activeTopic,setActiveTopic] = useState('all') 
   return (
-    <>
-    <div>
-      <Link to='/'><YouTubeIcon/></Link>
+    <div className='navbar-container'>
+    <div className='search-logo-container'>
+      <Link to='/' ><YouTubeIcon/></Link>
 
       <form onSubmit={(e) => {e.preventDefault();handleForm(e.target.q.value)}}>
         <input name='q' type="text" placeholder='search'/>
         <button type='submit'><SearchIcon/></button>
+        <h3>{message}</h3>
       </form>
-      <h3>{message}</h3>
     </div>
-    <div>
-      {topics.map((topic,index) => <Link className={topic === activeTopic? 'header-topic header-active-topic' : 'header-topic'} key={index} to={'/search/' + topic}>{topic}</Link>)}
+    <div className='topics-container'>
+      {topics.map((topic,index) => <Link onClick={() => setActiveTopic(topic)} className={topic === activeTopic? 'header-topic header-active-topic' : 'header-topic'} key={index} to={'/search/' + topic}>{topic}</Link>)}
     </div>
-    </>
+    </div>
   )
 }
 
